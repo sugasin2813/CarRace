@@ -1,0 +1,7 @@
+import cv2
+
+src = cv2.imread("./menu.jpg")
+
+dst = cv2.resize(src,(640,480))
+
+cv2.imwrite("./out.jpg",dst)
