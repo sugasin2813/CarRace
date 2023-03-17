@@ -11,7 +11,7 @@ private:
 	int max_x, min_x, max_y, min_y, size_x, size_y, speed; // 車
 	int goal_x, goal_y; // ゴールテープ
 	bool goal_generate, pause;
-	int score, difficulty, goal_judge; // ゲーム
+	int score, difficulty, goal_judge, crash, gameover, gameclear; // ゲーム
 
 	SceneChanger* Changer;
 public:

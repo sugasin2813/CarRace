@@ -4,6 +4,7 @@
 
 class SceneManager {
 private:
+	int bgm[2];
 	bool finish;
 	BaseScene* Scene;
 	SceneChanger* Changer;

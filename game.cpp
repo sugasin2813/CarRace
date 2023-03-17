@@ -38,9 +38,18 @@ Game::Game(SceneChanger *Changer, int Difficulty) : BaseScene(){
 
 	this->Changer = Changer;
 	this->pause = false;
+	this->crash = DxLib::LoadSoundMem("./bgm/crash.ogg");
+	this->gameclear = DxLib::LoadSoundMem("./bgm/GameClear.ogg");
+	this->gameover = DxLib::LoadSoundMem("./bgm/GameOver.ogg");
 }
 
 void Game::initialize() {
+	// 効果音の設定
+	DxLib::ChangeVolumeSoundMem(200, this->crash);
+	DxLib::ChangeVolumeSoundMem(100, this->gameclear);
+	DxLib::ChangeVolumeSoundMem(100, this->gameover);
+
+	// グラフィックの設定
 	this->road = DxLib::LoadGraph("./img/road.jpg");
 	this->goal = DxLib::LoadGraph("./img/goal.jpg");
 	DxLib::LoadDivGraph("./img/vehicles.png", 8, 4, 2, 589, 902, this->vehicles);
@@ -50,6 +59,7 @@ void Game::initialize() {
 
 void Game::finalize() {
 	DxLib::DeleteGraph(this->road);
+	DxLib::DeleteSoundMem(this->crash);
 	delete(this->vehicles);
 	delete(npcs);
 	delete(type);
@@ -89,7 +99,11 @@ void Game::update() {
 		std::tie(flag, crush) = judgement(this->npcs, this->number_npc, this->player_x, this->player_y, this->npc_x, this->npc_y, this->size_x, this->size_y);
 		if (flag == true) {
 			this->life--;
-			if (this->life < 0)	this->pause = true;
+			if (this->life < 0) {
+				DxLib::PlaySoundMem(this->gameover, DX_PLAYTYPE_BACK);
+				this->pause = true;
+			}
+			else DxLib::PlaySoundMem(this->crash, DX_PLAYTYPE_BACK);
 			this->npcs[crush] = NULL;
 
 		}
@@ -113,7 +127,10 @@ void Game::update() {
 		}
 		if (this->goal_generate == true) {
 			std::tie(flag, crush) = judgement(nullptr, NULL, this->player_x, this->player_y, this->goal_x, this->goal_y, this->size_x, this->size_y);
-			if (flag) pause = true;
+			if (flag) {
+				pause = true;
+				DxLib::PlaySoundMem(this->gameclear, DX_PLAYTYPE_BACK);
+			}
 			this->goal_y += 3;
 		}
 		if (this->goal_y > this->max_y) {

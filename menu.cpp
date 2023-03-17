@@ -2,7 +2,7 @@
 #include "menu.h"
 #include "SceneChanger.h"
 
-#define VERSION 1.0
+#define VERSION 1.1
 
 menu::menu(SceneChanger *changer) : BaseScene() {
 	this->back = DxLib::LoadGraph("./img/menu.jpg");
@@ -23,7 +23,6 @@ void menu::initialize() {
 }
 
 void menu::finalize() {
-	delete(this->MenuElement);
 	DxLib::DeleteGraph(this->back);
 }
 
@@ -60,8 +59,7 @@ void menu::draw() {
 	DxLib::SetFontSize(30);
 	for (int i = 0; i < this->FigureMenu;i++) {
 		DxLib::DrawFormatString(this->MenuElement[i].x, this->MenuElement[i].y, GetColor(255, 0, 0), this->MenuElement[i].name);
-		
-	}
+	}	
 }
 
 int menu::gpUpdateKey() {

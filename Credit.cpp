@@ -31,14 +31,23 @@ void Credit::draw() {
 	DxLib::DrawFormatString(240, 30, DxLib::GetColor(255, 0, 0), "クレジット");
 
 	DxLib::SetFontSize(20);
-
 	DxLib::DrawFormatString(20, 70, DxLib::GetColor(255, 0, 0), "ゲームエンジン");
-	DxLib::DrawFormatString(30, 120, DxLib::GetColor(255, 0, 0), "Dxライブラリ様: https://dxlib.xsrv.jp/");
-	//DxLib::DrawFormatString(30, 170, DxLib::GetColor(255, 0, 0), "");
 
-	DxLib::DrawFormatString(20, 240, DxLib::GetColor(255, 0, 0), "画像");
-	DxLib::DrawFormatString(30, 290, DxLib::GetColor(255, 0, 0), "イラストAC様: https://www.ac-illust.com/");
-	//DxLib::DrawFormatString(30, 340, DxLib::GetColor(255, 0, 0), "");
+	DxLib::SetFontSize(15);
+	DxLib::DrawFormatString(30, 120, DxLib::GetColor(255, 0, 0), "Dxライブラリ様: https://dxlib.xsrv.jp/");
+
+	DxLib::SetFontSize(20);
+	DxLib::DrawFormatString(20, 170, DxLib::GetColor(255, 0, 0), "画像");
+
+	DxLib::SetFontSize(15);
+	DxLib::DrawFormatString(30, 220, DxLib::GetColor(255, 0, 0), "イラストAC様: https://www.ac-illust.com/");
+
+	DxLib::SetFontSize(20);
+	DxLib::DrawFormatString(20, 270, DxLib::GetColor(255, 0, 0), "BGM、効果音");
+
+	DxLib::SetFontSize(15);
+	DxLib::DrawFormatString(30, 320, DxLib::GetColor(255, 0, 0), "魔王魂様: https://maou.audio/");
+	DxLib::DrawFormatString(30, 370, DxLib::GetColor(255, 0, 0), "Senses Circuit様: https://www.senses-circuit.com/");
 
 	DxLib::SetFontSize(20);
 	DxLib::DrawFormatString(30, 450, DxLib::GetColor(255, 0, 0), "Backspace:メニュー画面");
